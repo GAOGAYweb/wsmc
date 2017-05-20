@@ -12,7 +12,7 @@ var hex = require('hex');
 var WebSocketServer = (require('ws')).Server;
 var websocket_stream = require('websocket-stream');
 var argv = (require('optimist'))
-  .default('wshost', '')
+  .default('wshost', '0.0.0.0')
   .default('wsport', 24444)
   .default('mchost', 'localhost')
   .default('mcport', 25565)
@@ -24,8 +24,8 @@ var FIXED_MC_VERSION = false; // either a version string, or false to auto-detec
 
 console.log('WS('+argv.wshost+':'+argv.wsport+') <--> MC('+argv.mchost+':'+argv.mcport+')');
 
-var ids = minecraft_data.protocol.states.play.toClient;
-var sids = minecraft_data.protocol.states.play.toServer;
+// var ids = minecraft_data.protocol.states.play.toClient;
+// var sids = minecraft_data.protocol.states.play.toServer;
 
 
 var userIndex = 1;
@@ -37,8 +37,13 @@ var wss = new WebSocketServer({
 var EMPTY_BUFFER = new Buffer(0);
 
 wss.on('connection', function(new_websocket_connection) {
+  console.log("wss connection");
   var ws = websocket_stream(new_websocket_connection);
   var loggingIn = true;
+
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
 
   //ws.write('OK', {binary: true});
 

@@ -9,6 +9,7 @@
   },
   "keywords": [],
   "dependencies": {
+    "brfs": "^1.4.2",
     "browser-hex": "^1.0.0",
     "hex": "^0.1.0",
     "minecraft-data": "~2.14.0",
@@ -18,6 +19,7 @@
     "optimist": "^0.6.1",
     "protodef": "^0.2.6",
     "through": "^2.3.8",
+    "ursa": "^0.9.4",
     "websocket-stream": "^4.0.0",
     "ws": "^2.3.1"
   },
